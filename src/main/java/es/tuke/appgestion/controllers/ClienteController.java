@@ -50,8 +50,6 @@ public class ClienteController {
 
         return service.getByName(name)
                         .orElse(null);
-    //    return service.getById(id)
-    //                     .orElse(new ClienteModel());
     }
 
     
