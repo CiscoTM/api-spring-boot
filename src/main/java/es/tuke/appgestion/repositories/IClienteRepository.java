@@ -1,5 +1,6 @@
 package es.tuke.appgestion.repositories;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -9,12 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 import es.tuke.appgestion.models.ClienteModel;
 
 import java.util.ArrayList;
-import java.util.Optional;
+import java.util.List;
+//import java.util.Optional;
 
 
 public interface IClienteRepository extends JpaRepository<ClienteModel,Long > {
 
-    Optional<ClienteModel> findByName(String name);
+    List<ClienteModel> findByName(String name);
 
     // Obtiene listado completo clientes activos
     @Query("select u from ClienteModel u where u.active = 1")
@@ -31,7 +33,7 @@ public interface IClienteRepository extends JpaRepository<ClienteModel,Long > {
     @Query("update ClienteModel u set u.active = 0 where u.id = :id")
     public int inactiveCliente(@Param("id")Long id);
 
-
+    // 3f58fb8e-fbb9-4a3a-9f6c-6ca7c2caf030
 }
 
 

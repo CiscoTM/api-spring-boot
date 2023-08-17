@@ -1,10 +1,12 @@
 package es.tuke.appgestion.services;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import es.tuke.appgestion.models.ClienteModel;
 import es.tuke.appgestion.repositories.IClienteRepository;
@@ -44,7 +46,7 @@ public class ClienteService {
 
     
 
-    public Optional<ClienteModel> getByName(String name){
+    public List<ClienteModel> getByName(String name){
 
         return clienteRepository.findByName(name);
         
@@ -67,5 +69,7 @@ public class ClienteService {
 
     }
 
-    
+   
+        
+       
 }

@@ -1,8 +1,13 @@
 package es.tuke.appgestion.controllers;
 
+
+
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import es.tuke.appgestion.models.ClienteModel;
@@ -14,6 +19,9 @@ public class ClienteController {
 
     @Autowired
     private ClienteService service;
+
+
+
 
     @GetMapping("/clientes")
     public ArrayList<ClienteModel>getAll(){
@@ -39,26 +47,28 @@ public class ClienteController {
     }
 
     @PostMapping("/add")
-    public ClienteModel add(@RequestBody ClienteModel cliente){
+    public ResponseEntity<ClienteModel> add(@RequestBody ClienteModel cliente){
 
-        return service.add(cliente);
+        service.add(cliente);
+        return new ResponseEntity<ClienteModel>(cliente,null,HttpStatus.CREATED);
 
     }
 
     @GetMapping("clientes/name/{name}")
-    public ClienteModel getByname(@PathVariable("name") String name){
+    public List<ClienteModel> getByname(@PathVariable("name") String name){
 
-        return service.getByName(name)
-                        .orElse(null);
+        return service.getByName(name);
     }
 
     
     @PutMapping("clientes/delete/{id}")
-        public int delete(@PathVariable("id") Long id){
+    public int delete(@PathVariable("id") Long id){
 
-            return service.delete(id);
+        return service.delete(id);
 
     }
+
+    
 
     
 }
